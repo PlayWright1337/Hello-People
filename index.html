@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body>
+    <div class="noise"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="status-bar">
+                <span class="status-dot"></span>
+                <span class="status-text">DATA BREACH DETECTED</span>
+                <span class="timestamp" id="timestamp"></span>
+            </div>
+            <h1 class="main-title">Hello World</h1>
+            <p class="subtitle">Мы знаем всё о тебе</p>
+        </header>
+
+        <section class="data-section">
+            <h2 class="section-title">// ОБНАРУЖЕННЫЕ ДАННЫЕ</h2>
+            
+            <div class="data-grid">
+                <div class="data-card">
+                    <span class="data-label">IP АДРЕС</span>
+                    <span id="ip" class="data-value">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">СТРАНА</span>
+                    <span id="country" class="data-value">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">ГОРОД</span>
+                    <span id="city" class="data-value">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">ПРОВАЙДЕР</span>
+                    <span id="org" class="data-value">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">КООРДИНАТЫ</span>
+                    <span id="coords" class="data-value">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">ЧАСОВОЙ ПОЯС</span>
+                    <span id="timezone" class="data-value">...</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h2 class="section-title">// ПРИМЕРНОЕ МЕСТОПОЛОЖЕНИЕ</h2>
+            <div id="map" class="map-container"></div>
+        </section>
+
+        <section class="device-section">
+            <h2 class="section-title">// ИНФОРМАЦИЯ ОБ УСТРОЙСТВЕ</h2>
+            <div class="device-info">
+                <p><strong>Браузер:</strong> <span id="browser">...</span></p>
+                <p><strong>Операционная система:</strong> <span id="os">...</span></p>
+                <p><strong>Разрешение экрана:</strong> <span id="screen">...</span></p>
+                <p><strong>Глубина цвета:</strong> <span id="color-depth">...</span></p>
+                <p><strong>Язык:</strong> <span id="language">...</span></p>
+                <p><strong>Языки браузера:</strong> <span id="languages">...</span></p>
+                <p><strong>Платформа:</strong> <span id="platform">...</span></p>
+                <p><strong>Ядра CPU:</strong> <span id="cores">...</span></p>
+                <p><strong>RAM:</strong> <span id="ram">...</span></p>
+                <p><strong>Touch экран:</strong> <span id="touch">...</span></p>
+                <p><strong>User-Agent:</strong> <code id="useragent">...</code></p>
+            </div>
+        </section>
+
+        <section class="fingerprint-section">
+            <h2 class="section-title">// ЦИФРОВОЙ ОТПЕЧАТОК (FINGERPRINT)</h2>
+            <div class="fingerprint-grid">
+                <div class="data-card">
+                    <span class="data-label">CANVAS FINGERPRINT</span>
+                    <span id="canvas-fp" class="data-value hash">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">WEBGL FINGERPRINT</span>
+                    <span id="webgl-fp" class="data-value hash">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">AUDIO FINGERPRINT</span>
+                    <span id="audio-fp" class="data-value hash">...</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-label">COMBINED FINGERPRINT ID</span>
+                    <span id="combined-fp" class="data-value hash">...</span>
+                </div>
+            </div>
+            
+            <div class="fingerprint-details">
+                <div class="detail-block">
+                    <h3>WebGL Renderer</h3>
+                    <p id="webgl-vendor">...</p>
+                    <p id="webgl-renderer">...</p>
+                </div>
+                <div class="detail-block">
+                    <h3>Установленные шрифты (пример)</h3>
+                    <p id="fonts">Arial, Times New Roman, Helvetica, Georgia, Verdana...</p>
+                </div>
+                <div class="detail-block">
+                    <h3>Плагины браузера</h3>
+                    <p id="plugins">...</p>
+                </div>
+                <div class="detail-block">
+                    <h3>Battery Status</h3>
+                    <p id="battery">...</p>
+                </div>
+                <div class="detail-block">
+                    <h3>Network Information</h3>
+                    <p id="network">...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <h2 class="section-title">// ПОИСК ПО FINGERPRINT</h2>
+            <div class="search-info">
+                <p>По этому цифровому отпечатку тебя можно идентифицировать на разных сайтах, даже если ты используешь VPN или режим инкогнито.</p>
+                <p class="search-links">
+                    <span>Проверь свой fingerprint на:</span><br>
+                    <a href="https://amiunique.org/fingerprint" target="_blank">amiunique.org</a>
+                    <a href="https://browserleaks.com/canvas" target="_blank">browserleaks.com</a>
+                    <a href="https://coveryourtracks.eff.org/" target="_blank">coveryourtracks.eff.org</a>
+                    <a href="https://ip8.com/fingerprint" target="_blank">ip8.com</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="warning-section">
+            <p class="warning-text">Эта информация была сохранена в нашей базе данных.</p>
+            <p class="warning-text">Не волнуйся. Это просто демонстрация того, какие данные видят сайты, которые ты посещаешь.</p>
+        </section>
+
+        <footer class="footer">
+            <p>Session ID: <span id="session-id"></span></p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
